@@ -75,36 +75,23 @@ export default function SkillsSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.35 });
   const [isAssembled, setIsAssembled] = useState(false);
   const [pressedKey, setPressedKey] = useState<number | null>(null);
-  const [kbScale, setKbScale] = useState(1);
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
   /* ── Staggered assembly delay timer ── */
   useEffect(() => {
+    let timer: NodeJS.Timeout;
     if (isInView) {
-      setIsAssembled(false);
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setIsAssembled(true);
       }, 1500); // 1.5s settles the entire keyboard entrance
-      return () => clearTimeout(timer);
     } else {
-      setIsAssembled(false);
+      timer = setTimeout(() => setIsAssembled(false), 0);
     }
+    return () => clearTimeout(timer);
   }, [isInView]);
 
-  /* ── Responsive scale ── */
-  useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth;
-      if (w >= 1200) setKbScale(1);
-      else if (w >= 900) setKbScale(0.8);
-      else if (w >= 700) setKbScale(0.65);
-      else setKbScale(0.48);
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+
 
   /* ── Typing interaction simulation ── */
   useEffect(() => {
@@ -247,7 +234,7 @@ export default function SkillsSection() {
             fontWeight: 900,
             letterSpacing: "0.08em",
             lineHeight: 1.1,
-            background: isDark
+            backgroundImage: isDark
               ? "linear-gradient(180deg, #FFFFFF 0%, #C0C0CB 40%, #7E7E91 100%)"
               : "linear-gradient(180deg, #0F172A 0%, #475569 50%, #64748B 100%)",
             WebkitBackgroundClip: "text",

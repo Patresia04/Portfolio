@@ -2,33 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FiArrowRight, FiChevronDown } from "react-icons/fi";
-import Image from "next/image";
+import { FiChevronDown } from "react-icons/fi";
 import FloatingIdentityCard from "./FloatingIdentityCard";
-
-function CountUp({ target, suffix = "" }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const numTarget = parseInt(target);
-
-  useEffect(() => {
-    if (!isInView) return;
-    let current = 0;
-    const step = Math.max(1, Math.floor(numTarget / 30));
-    const interval = setInterval(() => {
-      current += step;
-      if (current >= numTarget) {
-        current = numTarget;
-        clearInterval(interval);
-      }
-      setCount(current);
-    }, 40);
-    return () => clearInterval(interval);
-  }, [isInView, numTarget]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
 
 export default function Hero() {
   const containerVariants = {

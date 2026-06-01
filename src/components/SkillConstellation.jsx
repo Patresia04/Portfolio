@@ -310,7 +310,6 @@ export default function SkillConstellation() {
   const handleMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), []);
 
   const rowOffsets = [0, 48, 24];
-  let globalIdx = 0;
 
   return (
     <section
@@ -375,8 +374,7 @@ export default function SkillConstellation() {
               >
                 {keyboardRows.map((row, rowIdx) => {
                   const rowKeys = row.keys;
-                  const startIdx = globalIdx;
-                  globalIdx += rowKeys.length;
+                  const startIdx = keyboardRows.slice(0, rowIdx).reduce((sum, r) => sum + r.keys.length, 0);
 
                   return (
                     <div key={rowIdx}>

@@ -62,10 +62,10 @@ export default function OpeningLoader({ isVisible }: OpeningLoaderProps) {
               const cx = 50;
               const cy = 50;
               
-              const x1 = cx + innerRadius * Math.cos(angle);
-              const y1 = cy + innerRadius * Math.sin(angle);
-              const x2 = cx + radius * Math.cos(angle);
-              const y2 = cy + radius * Math.sin(angle);
+              const x1 = (cx + innerRadius * Math.cos(angle)).toFixed(4);
+              const y1 = (cy + innerRadius * Math.sin(angle)).toFixed(4);
+              const x2 = (cx + radius * Math.cos(angle)).toFixed(4);
+              const y2 = (cy + radius * Math.sin(angle)).toFixed(4);
               
               return (
                 <line
@@ -76,7 +76,7 @@ export default function OpeningLoader({ isVisible }: OpeningLoaderProps) {
                   y2={y2}
                   stroke="white"
                   strokeWidth="5"
-                  style={{ opacity }}
+                  style={{ opacity: Number(opacity.toFixed(4)) }}
                 />
               );
             })}

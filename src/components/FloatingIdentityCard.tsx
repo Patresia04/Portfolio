@@ -60,9 +60,9 @@ export default function FloatingIdentityCard() {
   const swingTransition = prefersReducedMotion
     ? {}
     : {
-        rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-        x: { duration: 7, repeat: Infinity, ease: "easeInOut" },
-        y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
+        rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" as const },
+        x: { duration: 7, repeat: Infinity, ease: "easeInOut" as const },
+        y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" as const },
       };
 
   return (

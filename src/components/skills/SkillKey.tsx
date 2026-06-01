@@ -49,10 +49,6 @@ interface SkillKeyProps {
 
 export default function SkillKey({
   data,
-  index,
-  row,
-  col,
-  isVisible,
   isPressed: externalPressed,
 }: SkillKeyProps) {
   const [hovered, setHovered] = useState(false);
@@ -60,7 +56,6 @@ export default function SkillKey({
   const pressed = externalPressed || localPressed;
 
   const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   const Icon = data.icon;
   const iColor = data.iconColor || "#fff";
@@ -96,10 +91,6 @@ export default function SkillKey({
   const plungerRotateY = pressed ? 0 : hovered ? 2.5 : 0;
 
   // Refined dynamic glow shadow that grows deeper on hover, compresses on press
-  const shadowOpacity = pressed ? 0.65 : hovered ? 0.25 : 0.35;
-  const shadowScale = pressed ? 0.82 : hovered ? 1.18 : 1.0;
-  const shadowBlur = pressed ? "4px" : hovered ? "14px" : "8px";
-  const shadowZ = pressed ? "0px" : hovered ? "-12px" : "-6px";
 
   return (
     <div
