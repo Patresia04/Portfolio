@@ -22,8 +22,8 @@ export default function SocialButton({ link }: SocialButtonProps) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Precise collapsed coordinates: mobile translates to -130px, desktop to -155px
-  const collapsedX = isMobile ? -130 : -155;
+  // Precise collapsed coordinates: mobile translates to -108px, desktop to -124px
+  const collapsedX = isMobile ? -108 : -124;
 
   return (
     <motion.a
@@ -32,7 +32,7 @@ export default function SocialButton({ link }: SocialButtonProps) {
       rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-center justify-between h-[52px] sm:h-[56px] w-[180px] sm:w-[210px] rounded-r-[14px] text-white font-semibold pointer-events-auto select-none overflow-hidden transform-gpu will-change-transform"
+      className="flex items-center justify-between h-[42px] sm:h-[46px] w-[150px] sm:w-[170px] rounded-r-[12px] text-white font-semibold pointer-events-auto select-none overflow-hidden transform-gpu will-change-transform"
       style={{
         background: link.bg,
       }}
@@ -56,8 +56,8 @@ export default function SocialButton({ link }: SocialButtonProps) {
       </span>
 
       {/* Icon Area (stays visible on the right edge) */}
-      <div className="w-[50px] sm:w-[55px] h-full flex items-center justify-center flex-shrink-0">
-        <Icon size={22} className="transform-gpu" />
+      <div className="w-[42px] sm:w-[46px] h-full flex items-center justify-center flex-shrink-0">
+        <Icon size={18} className="transform-gpu" />
       </div>
     </motion.a>
   );

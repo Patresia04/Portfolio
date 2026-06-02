@@ -31,20 +31,6 @@ const titleVariants = {
   },
 };
 
-const subtitleVariants = {
-  hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: {
-      type: "spring" as const,
-      stiffness: 85,
-      damping: 18,
-    },
-  },
-};
-
 const keyboardVariants = {
   hidden: {
     scale: 0.4,
@@ -129,7 +115,7 @@ export default function SkillsSection() {
       const cy = rect.top + rect.height / 2;
       const dx = (e.clientX - cx) / (rect.width / 2);
       const dy = (e.clientY - cy) / (rect.height / 2);
-      
+
       // Soft kinetic shifts
       mxRaw.set(dx * 12);
       myRaw.set(dy * 8);
@@ -154,23 +140,20 @@ export default function SkillsSection() {
   return (
     <motion.section
       ref={sectionRef}
-      id="skills"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.35 }}
+      viewport={{ once: true, amount: 0.2 }}
       style={{
         background: "transparent",
-        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: "6rem",
+        paddingTop: "2rem",
         paddingBottom: "4rem",
         position: "relative",
         overflow: "hidden",
-        transition: "background-color 0.4s ease",
       }}
     >
       {/* ── Theme-consistent Ambient Background Glow Orbs ── */}
@@ -227,62 +210,39 @@ export default function SkillsSection() {
       <div className="relative z-10 w-full flex flex-col items-center">
         {/* ═══ TITLE ═══ */}
         <motion.h2
-          className="font-black text-center"
+          className="font-extrabold text-center"
           variants={titleVariants}
           style={{
-            fontSize: "clamp(54px, 6.5vw, 92px)",
-            fontWeight: 900,
-            letterSpacing: "0.08em",
+            fontSize: "clamp(36px, 5vw, 64px)",
+            fontWeight: 800,
+            letterSpacing: "0.04em",
             lineHeight: 1.1,
             backgroundImage: isDark
-              ? "linear-gradient(180deg, #FFFFFF 0%, #C0C0CB 40%, #7E7E91 100%)"
-              : "linear-gradient(180deg, #0F172A 0%, #475569 50%, #64748B 100%)",
+              ? "linear-gradient(135deg, #FFFFFF 0%, #F472B6 50%, #A855F7 100%)"
+              : "linear-gradient(135deg, #09090b 0%, #EC4899 50%, #8B5CF6 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            marginBottom: 6,
+            marginBottom: 8,
           }}
         >
-          <span
-            style={{
-              filter: isDark
-                ? "drop-shadow(1px 1px 0 #555) drop-shadow(2px 2px 0 #444) drop-shadow(3px 3px 0 #333) drop-shadow(4px 4px 6px rgba(0,0,0,0.8))"
-                : "drop-shadow(1px 1px 0 #E2E8F0) drop-shadow(2px 2px 0 #CBD5E1) drop-shadow(3px 3px 6px rgba(0,0,0,0.15))",
-            }}
-          >
-            SKILLS
-          </span>
         </motion.h2>
 
         {/* Clean divider line */}
         <motion.div
           initial={{ width: 0, opacity: 0 }}
-          whileInView={{ width: "4.5rem", opacity: 1 }}
+          whileInView={{ width: "5rem", opacity: 1 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.5, delay: 0.15 }}
           style={{
-            height: "2px",
-            background: isDark
-              ? "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)"
-              : "linear-gradient(90deg, transparent, rgba(24,24,27,0.15), transparent)",
-            marginBottom: 8,
+            height: "3px",
+            borderRadius: "2px",
+            backgroundImage: "linear-gradient(90deg, #EC4899, #A855F7, #EC4899)",
+            backgroundSize: "200% 100%",
+            animation: "shimmer 3s ease-in-out infinite",
+            marginBottom: 12,
           }}
         />
-
-        {/* Subtitle */}
-        <motion.p
-          className="text-center font-medium"
-          variants={subtitleVariants}
-          style={{
-            fontSize: 13,
-            fontStyle: "italic",
-            color: isDark ? "rgba(148,163,184,0.75)" : "rgba(71,85,105,0.8)",
-            opacity: isDark ? 0.45 : 0.65,
-            marginBottom: "3rem",
-          }}
-        >
-          (hint: press a key)
-        </motion.p>
 
         {/* ═══ 3D KEYBOARD SYSTEM ═══ */}
         <div

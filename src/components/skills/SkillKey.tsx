@@ -55,7 +55,7 @@ export default function SkillKey({
   const [localPressed, setLocalPressed] = useState(false);
   const pressed = externalPressed || localPressed;
 
-  const { theme } = useTheme();
+  useTheme();
 
   const Icon = data.icon;
   const iColor = data.iconColor || "#fff";
